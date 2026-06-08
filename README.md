@@ -152,14 +152,34 @@ front of it, and the citations reflect what was actually retrieved.
 
 ## Example responses
 
-> ⏳ **Pending GROQ_API_KEY.** Retrieval is fully verified above; generation needs a
-> free Groq key (`console.groq.com`) in `.env`. After adding it, run
-> `python evaluate.py` and these sections (example responses, full evaluation
-> answers, failure-case write-up) will be filled with the real model output.
-> *(See "What you need to do" at the bottom.)*
+Real output from the system (Groq `llama-3.3-70b-versatile`). Source attribution is
+visible in each.
 
-_To be filled:_ 2 grounded responses with visible source attribution + 1
-out-of-scope query ("best gym on campus?") showing the refusal.
+**Example 1 — "Does Professor Hilfinger base CS61B exams on the slides, and what do students say about the autograder?"**
+> According to the passages, Professor Hilfinger's exams are NOT based on the lecture
+> slides directly [rmp_cs61b_hilfinger.txt, Review 1]. They test whether you can apply
+> data structures to problems you have never seen. Regarding the autograder, students
+> say it is "brutal and gives almost no partial credit" [rmp_cs61b_hilfinger.txt,
+> Review 1] and that "feedback from the autograder is sparse" [rmp_cs61b_hilfinger.txt,
+> Review 4].
+>
+> **Retrieved from:** rmp_cs61b_hilfinger.txt, reddit_data8_vs_data100.txt
+
+**Example 2 — "Which dining hall do students recommend and why?"**
+> Students recommend Crossroads for its variety and best hours, including a
+> build-your-own stir fry station [reddit_dining_halls.txt]. However, it can get
+> crowded at peak lunch hours. Alternatively, Cafe 3 is recommended for its consistent
+> food quality and shorter lines [reddit_dining_halls.txt]. Foothill is also suggested
+> for its high food quality, but it's a hike for those not in northside dorms
+> [reddit_dining_halls.txt]. Clark Kerr is convenient only if you live nearby, but the
+> food is considered boring [reddit_dining_halls.txt].
+>
+> **Retrieved from:** reddit_dining_halls.txt, reddit_coops_vs_dorms.txt, reddit_meal_plan_worth_it.txt
+
+**Out-of-scope query — "What is the best gym on campus and what are its hours?"** (nothing in the corpus covers gyms)
+> I don't have enough information on that.
+
+The system declines rather than fabricating a plausible answer — grounding holds.
 
 ## Query interface
 
@@ -170,40 +190,84 @@ out-of-scope query ("best gym on campus?") showing the refusal.
   source files the answer may draw on), and *Retrieved chunks* (the raw passages +
   distances, so a viewer can see exactly what grounded the answer).
 
-_Sample interaction transcript:_ ⏳ pending GROQ_API_KEY (see above).
+_Sample interaction transcript_ (one complete query → response, via `python query.py`):
+```
+$ python query.py "is the housing lottery actually random?"
+
+Q: is the housing lottery actually random?
+
+A: Yes, the housing lottery is genuinely random for the lottery number itself
+   [reddit_housing_lottery.txt]. However, this randomness applies within specific
+   pools, such as on-time applicants, and separate pools for continuing students,
+   new freshmen, and those with approved accommodations.
+
+Retrieved from:
+  • reddit_housing_lottery.txt
+  • reddit_safety_neighborhoods.txt
+```
 
 ## Evaluation report
 
-All 5 test questions and expected answers are in
-[`planning.md`](planning.md#evaluation-plan). **Retrieval** for every question is
-verified (above / via `evaluate.py --retrieval-only`):
+All 5 test questions, expected answers, the system's actual response, retrieved
+chunks, and accuracy judgments. Full reproducible output: `python evaluate.py`.
 
-| # | Question | Retrieval accuracy | Response accuracy |
-|---|---|---|---|
-| 1 | Hilfinger CS61B exams / autograder | ✅ accurate (top-3 correct source) | ⏳ pending key |
-| 2 | Housing lottery random? | ✅ accurate (top-3 correct source) | ⏳ pending key |
-| 3 | Most useful CS feedback | ✅ accurate | ⏳ pending key |
-| 4 | Dining hall recommendation | ✅ accurate | ⏳ pending key |
-| 5 | Co-op vs dorm cost *in dollars* | ⚠️ partial — correct source, but no $ figures exist | ⏳ pending key |
+| # | Question | Retrieval | Response | Judgment |
+|---|---|---|---|---|
+| 1 | Hilfinger CS61B exams / autograder | ✅ top-3 correct source | Exams not slide-based; autograder "brutal", "almost no partial credit", "sparse" feedback | **Accurate** |
+| 2 | Housing lottery random? | ✅ top-3 correct source | "Random for the lottery number itself… within specific pools" + accommodations pool | **Accurate** (omits the "missing the deadline drops you" nuance, but the core claim + pools are right) |
+| 3 | Most useful CS feedback | ✅ top-3 correct source | CS70 for proofs (paragraph-long comments); CS61B code review for code | **Accurate** |
+| 4 | Dining hall recommendation | ✅ correct source ranks 1&3 | Crossroads (variety/hours, crowded), Cafe 3 (consistent/short lines), Foothill (best food, a hike), Clark Kerr (boring) | **Accurate** |
+| 5 | Co-op vs dorm cost *in dollars* | ✅ co-op chunks at 0.23–0.27 | **"I don't have enough information on that."** | **Partially accurate** — see failure case |
 
-**Predicted failure case (Q5)** — to be confirmed with real output: the documents
-say co-ops are "significantly cheaper" but contain **no dollar amounts**. Retrieval
-correctly surfaces the co-op cost chunks (distances 0.23–0.27), so this is *not* a
-retrieval failure — it's a **corpus-coverage limit**: the question asks for a
-quantitative answer the source material only addresses qualitatively. A correctly
-grounded system should give the relative comparison and decline to invent dollar
-figures; an *incorrectly* grounded one would hallucinate a number. This is the value
-of the test — it probes whether grounding holds when the honest answer is "the
-documents don't say." *(Final judgment + any observed hallucination recorded after
-the generation run.)*
+Plus the out-of-scope check ("best gym on campus?"): retrieval distances all ≥0.57,
+system correctly answered **"I don't have enough information on that."**
+
+### Failure case (Q5) — over-conservative refusal
+
+**What happened:** asked "how much cheaper is a co-op than the dorms *per month, in
+dollars*?", the system returned a flat **"I don't have enough information on that."**
+
+**Why it's a failure (and what's *not* the cause):** retrieval was perfect — the
+three most relevant chunks (distances 0.23–0.27) are exactly the co-op cost
+discussion, including "co-ops are *significantly cheaper*" and "cheapest to most
+expensive: co-op < shared apartment < dorm." So this is **not** a retrieval failure.
+It's a **generation/grounding-prompt failure**: the corpus answers the question
+*qualitatively* (co-ops are cheaper) but never gives a *dollar figure*, and the
+question explicitly demanded dollars. My grounding prompt's hard rule — *"If the
+context does not contain enough information to answer, reply EXACTLY: I don't have
+enough information on that."* — fired on the missing dollar amount and made the model
+discard the partial qualitative answer it actually had in front of it. The ideal
+grounded response would have been *"the documents don't give dollar amounts, but
+students say co-ops are significantly cheaper than dorms"* — answer the answerable
+part, decline the unanswerable part.
+
+**The tradeoff this exposes:** a strict refusal rule is what prevents hallucination
+on the out-of-scope gym query (a good outcome), but the *same* rule causes an
+unhelpful all-or-nothing refusal on a partially-answerable query. The fix would be to
+soften the prompt to "answer whatever the passages support and explicitly note what
+they don't," accepting slightly more hallucination risk — a deliberate
+precision/recall tradeoff, not a bug to silently patch.
 
 ## Spec reflection
 
-⏳ Drafted after the full run. *(One way the spec helped: writing the chunking
-section first forced the comment-aware decision before any code, which is why
-retrieval precision is high. One divergence: I added an empty-chunk safety net and a
-`CHUNK_MAX_CHARS` force-split that weren't in the original spec, after seeing real
-block sizes — planning.md was updated to match.)*
+**How the spec helped:** writing the Chunking Strategy section in `planning.md`
+*before* any code forced the key decision — that the retrieval unit is one
+comment/review, not a fixed character window — up front. That decision is the direct
+cause of the strong retrieval numbers (top hits 0.23–0.38): every chunk is one
+self-contained opinion, so queries match a complete thought instead of a fragment.
+Had I coded first and specced later, I'd likely have reached for a naive fixed-size
+splitter and spent the debugging time the spec saved.
+
+**Where the implementation diverged:** the spec didn't anticipate two things I added
+once I saw real data. (1) A `CHUNK_MAX_CHARS` hard cap with sentence-level overlap —
+the original plan only described merging small comments, but one dining-hall comment
+block ran long enough to need a controlled split. (2) An empty-chunk safety filter in
+the chunker. Both were added after inspecting real chunk sizes, and `planning.md` was
+updated to match so the spec and code stayed in sync. The Q5 failure also revealed a
+divergence in *intent*: the spec called the grounding prompt "strict refusal when
+insufficient," and the implementation delivered exactly that — but the eval showed
+"strict" was *too* strict for partially-answerable questions, which the spec hadn't
+distinguished from fully-unanswerable ones.
 
 ## AI usage
 
