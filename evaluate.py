@@ -6,7 +6,7 @@ retrieved chunks with distances, and the system's actual response. The human
 accuracy judgments (accurate / partially accurate / inaccurate) are recorded in
 README.md based on these runs.
 
-    python evaluate.py            # full run (needs GROQ_API_KEY)
+    python evaluate.py            # full run (needs ANTHROPIC_API_KEY)
     python evaluate.py --retrieval-only   # just retrieval, no LLM
 """
 

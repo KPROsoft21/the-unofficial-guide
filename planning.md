@@ -161,7 +161,7 @@ explain every line.
                   ▼
         ┌────────────────────┐      ┌──────────────────────────────┐
         │ 4. RETRIEVAL       │      │ 5. GENERATION                │
-        │ embed query, top-k=4│─────▶│ Groq llama-3.3-70b-versatile │
+        │ embed query, top-k=4│─────▶│ Claude (claude-opus-4-8)     │
         │ cosine search      │      │ grounded prompt (context     │
         │ (+ optional hybrid │      │ only) + programmatic source  │
         │  BM25) retrieve.py │      │ attribution (generate.py)    │

@@ -9,8 +9,8 @@ Domain: **the unofficial student guide to UC Berkeley** (courses & professors,
 dining, housing).
 
 ```
-You ──▶ retrieve top-4 chunks (MiniLM + ChromaDB) ──▶ Groq LLM answers from
-        those chunks only ──▶ answer + source citations 
+You ──▶ retrieve top-4 chunks (MiniLM + ChromaDB) ──▶ Claude answers from
+        those chunks only ──▶ answer + source citations
 ```
 
 ---
@@ -20,7 +20,7 @@ You ──▶ retrieve top-4 chunks (MiniLM + ChromaDB) ──▶ Groq LLM answe
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env          # then paste your free Groq key (console.groq.com)
+cp .env.example .env          # then paste your Anthropic API key (console.anthropic.com)
 python embed_store.py         # build the vector index (one time)
 python app.py                 # open http://localhost:7860
 ```
@@ -141,7 +141,9 @@ Two mechanisms (see `generate.py`):
 
 1. **Strict system prompt** — the model is told to use *only* the numbered context
    passages, to never use outside knowledge, and to reply **exactly** `"I don't have
-   enough information on that."` when context is insufficient. Temperature is 0.1.
+   enough information on that."` when context is insufficient. (The model is
+   `claude-opus-4-8`; Opus 4.8 removes the `temperature` knob, so grounding is steered
+   entirely by the prompt, which is the more robust control anyway.)
 2. **Programmatic source attribution** — the `sources` list returned to the user is
    built in code from the retrieved chunks' metadata (`query.py`), *not* parsed from
    the LLM's prose. Attribution is therefore guaranteed even if the model forgets to
@@ -152,8 +154,8 @@ front of it, and the citations reflect what was actually retrieved.
 
 ## Example responses
 
-> ⏳ **Pending GROQ_API_KEY.** Retrieval is fully verified above; generation needs a
-> free Groq key (`console.groq.com`) in `.env`. After adding it, run
+> ⏳ **Pending ANTHROPIC_API_KEY.** Retrieval is fully verified above; generation needs
+> an Anthropic API key (`console.anthropic.com`) in `.env`. After adding it, run
 > `python evaluate.py` and these sections (example responses, full evaluation
 > answers, failure-case write-up) will be filled with the real model output.
 > *(See "What you need to do" at the bottom.)*
@@ -170,7 +172,7 @@ out-of-scope query ("best gym on campus?") showing the refusal.
   source files the answer may draw on), and *Retrieved chunks* (the raw passages +
   distances, so a viewer can see exactly what grounded the answer).
 
-_Sample interaction transcript:_ ⏳ pending GROQ_API_KEY (see above).
+_Sample interaction transcript:_ ⏳ pending ANTHROPIC_API_KEY (see above).
 
 ## Evaluation report
 

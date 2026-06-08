@@ -1,20 +1,23 @@
 """Stage 5 — Grounded generation.
 
-Takes retrieved chunks and a question, and asks Groq's llama-3.3-70b-versatile to
-answer USING ONLY those chunks. Grounding is enforced two ways:
+Takes retrieved chunks and a question, and asks Claude (Anthropic API) to answer
+USING ONLY those chunks. Grounding is enforced two ways:
 
   1. A strict system prompt that forbids outside knowledge and requires an explicit
      "I don't have enough information on that." when the context is insufficient.
   2. Source attribution is added PROGRAMMATICALLY from the retrieved chunks'
-     metadata (not left to the LLM), so every answer is traceable to real sources.
+     metadata (not left to the model), so every answer is traceable to real sources.
 
-Requires GROQ_API_KEY in .env (free key from https://console.groq.com).
+Requires ANTHROPIC_API_KEY in .env (get a key from https://console.anthropic.com).
+Uses claude-opus-4-8. Note: Opus 4.8 removes temperature/top_p/top_k (sending them
+400s), so we steer purely with the prompt; we also tell it to return only the final
+answer, since with thinking off Opus 4.8 can otherwise narrate its reasoning.
 """
 
 import os
 
+import anthropic
 from dotenv import load_dotenv
-from groq import Groq
 
 from config import LLM_MODEL
 
@@ -32,7 +35,9 @@ prior knowledge, even if you are confident.
 - Do not speculate, generalize, or fill gaps with what is "usually" true.
 - Cite the passages you used inline by their bracketed source name, e.g. \
 [reddit_dining_halls.txt].
-- Keep answers concise and specific to what students actually said."""
+- Keep answers concise and specific to what students actually said.
+- Respond with only the final answer — no preamble, no description of your \
+reasoning or process."""
 
 
 def _format_context(chunks: list[dict]) -> str:
@@ -47,18 +52,17 @@ def generate_answer(query: str, chunks: list[dict]) -> str:
     if not chunks:
         return "I don't have enough information on that."
 
-    client = Groq(api_key=os.environ["GROQ_API_KEY"])
+    client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from the environment
     user_msg = (
         f"Context passages:\n\n{_format_context(chunks)}\n\n"
         f"Question: {query}\n\n"
         "Answer using only the passages above."
     )
-    resp = client.chat.completions.create(
+    response = client.messages.create(
         model=LLM_MODEL,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_msg},
-        ],
-        temperature=0.1,  # low temperature keeps the model anchored to the context
+        max_tokens=1024,
+        system=SYSTEM_PROMPT,
+        messages=[{"role": "user", "content": user_msg}],
     )
-    return resp.choices[0].message.content.strip()
+    # response.content is a list of content blocks; collect the text blocks.
+    return "".join(b.text for b in response.content if b.type == "text").strip()

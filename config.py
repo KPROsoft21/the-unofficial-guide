@@ -26,5 +26,5 @@ COLLECTION_NAME = "unofficial_guide"
 # --- Retrieval ---
 TOP_K = 4                  # chunks returned per query
 
-# --- Generation (Groq) ---
-LLM_MODEL = "llama-3.3-70b-versatile"
+# --- Generation (Anthropic Claude) ---
+LLM_MODEL = "claude-opus-4-8"
