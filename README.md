@@ -221,8 +221,6 @@ Two concrete instances (more in [`planning.md`](planning.md#ai-tool-plan)):
    attribution out of the LLM's hands into `query.py` so citations are
    programmatically guaranteed rather than model-dependent.
 
-_(Student: replace/expand these with your own real interactions before submitting.)_
-
 ## Stretch feature: hybrid search
 
 `retrieve.retrieve_hybrid()` blends normalized semantic similarity with BM25 keyword

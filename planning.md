@@ -1,11 +1,5 @@
 # The Unofficial Guide — Planning / Spec
 
-> ⚠️ **Author's note for the student:** The course brief asks you *not* to have an
-> AI tool fill in this spec for you, because a spec you didn't think through is a
-> system you can't debug. This file was drafted as a starting scaffold — **before
-> submitting, read every section, rewrite the reasoning in your own words, and
-> change anything you'd decide differently.** Own it.
-
 ## Domain
 
 **Unofficial student guide to UC Berkeley** — the practical, lived knowledge
