@@ -1,0 +1,12 @@
+SOURCE: Reddit-style thread (sample) — r/berkeley "Math 1A vs Math 16A — which calculus should I take?"
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+[OP] CS/data science track. Do I need Math 1A or can I take 16A?
+
+[Top comment, 96 upvotes] Check your major requirements first — that decides it, not difficulty. EECS and intended CS in L&S generally require the 1A/1B sequence (the "real" calculus). 16A/16B is the applied sequence aimed at life sciences and some social sciences. Taking 16A when your major needs 1A means retaking it.
+
+[Reply, 64 upvotes] 1A is more rigorous and proof-leaning; 16A moves faster and covers a broader but shallower set of topics including some matrix stuff. If you're STEM and might switch into engineering, take 1A to keep doors open.
+
+[Reply, 38 upvotes] Difficulty-wise people find 1A "harder but more useful." 16A is not easy either — the breadth can be a trap. Either way, the professor and your own calculus background matter more than the course number.
+
+[Reply, 19 upvotes] Data science majors: the major page lists exactly which one counts. Do not guess. Math 1A is the safe choice if you're undecided between CS and data science.

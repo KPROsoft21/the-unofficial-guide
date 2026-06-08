@@ -1,0 +1,18 @@
+SOURCE: Rate My Professors-style reviews (sample) — Paul Hilfinger, CS 61B (Data Structures), UC Berkeley
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+--- Review 1 (4 semesters ago) ---
+Quality: 3.5 / Difficulty: 4.5 / Would take again: Yes
+Hilfinger is brilliant but you have to meet him halfway. His exams are NOT based on the lecture slides directly — they test whether you can apply data structures to problems you have never seen. Memorizing slides will not save you. The autograder for projects is brutal and gives almost no partial credit, so start early. Office hours are genuinely useful if you come with a specific question.
+
+--- Review 2 (3 semesters ago) ---
+Quality: 2.0 / Difficulty: 5.0 / Would take again: No
+The workload is insane. Project 2 (Gitlet) took me 40+ hours. The autograder either passes or fails and you get a cryptic message. That said, I learned more about Java and data structures here than in any other class. Do not take this with two other technical courses.
+
+--- Review 3 (2 semesters ago) ---
+Quality: 4.0 / Difficulty: 4.0 / Would take again: Yes
+Exams are hard but fair. The key is that Hilfinger expects you to reason from first principles. Lecture attendance matters less than doing every lab and discussion worksheet. The class is curved generously — the median is usually a B/B+, so a "failing" raw score is often fine after the curve. Read the spec for projects three times before coding.
+
+--- Review 4 (1 semester ago) ---
+Quality: 3.0 / Difficulty: 4.5 / Would take again: Yes
+Feedback from the autograder is sparse, but the TAs give very detailed feedback in code review sessions if you sign up. Honestly the discussion sections are where the real teaching happens. Hilfinger himself is dry in lecture but precise. Exams reward understanding, not memorization.

@@ -1,0 +1,12 @@
+SOURCE: Reddit-style thread (sample) — r/berkeley "Which CS professor actually gives useful feedback?"
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+[OP] Not asking who is "easiest." I want to know which CS class actually gives you useful feedback on your work so you improve.
+
+[Top comment, 152 upvotes] CS70 by a mile. The graders leave paragraph-long written comments on your proofs explaining exactly where your logic fails. No other lower-div class comes close on written feedback.
+
+[Reply, 98 upvotes] For coding feedback specifically, CS61B's optional code review sessions with TAs are great — you sign up and a TA reads your project code and tells you what's bad about your style and design. But you have to opt in; the autograder itself gives almost nothing.
+
+[Reply, 64 upvotes] Counterpoint: in the big classes (CS61A especially) feedback is basically just the autograder score because there are 1500+ students. Individual feedback doesn't scale at that size. If detailed human feedback matters to you, CS70 and the 61B code reviews are your best bet.
+
+[Reply, 30 upvotes] Upper div is different — smaller classes mean more feedback. But for lower div, the consensus is CS70 for proofs, 61B code review for code.

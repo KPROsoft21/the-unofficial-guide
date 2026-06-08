@@ -1,0 +1,12 @@
+SOURCE: Reddit-style thread (sample) — r/berkeley "Is the housing lottery actually random?"
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+[OP] Everyone says the housing assignment is a "lottery" but is it actually random or is there a system? Trying to figure out if my application timing matters.
+
+[Top comment, 240 upvotes] It's genuinely random for the lottery number itself — the system assigns you a random time slot and that part is not based on when you applied, as long as you apply before the priority deadline. What people get wrong: applying earlier does NOT improve your lottery number. But missing the priority deadline DOES drop you into a worse pool. So the randomness only applies within the on-time group.
+
+[Reply, 130 upvotes] Confirming: the lottery number is random, but your *preferences* and *contract type* (academic year vs. semester) filter what you're even eligible for. Continuing students and new freshmen are in different pools. So "random" is true but only within your pool.
+
+[Reply, 88 upvotes] One nuance — students with approved disability/medical accommodations are assigned outside the lottery. And themed program housing (like the African American Theme Program) has a separate application. So it's random for the general pool only.
+
+[Reply, 54 upvotes] TL;DR yes the number is random, no applying at 12:01am does not help, just don't miss the priority deadline.

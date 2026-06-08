@@ -1,0 +1,12 @@
+SOURCE: Reddit-style thread (sample) — r/berkeley "Data 8 vs Data 100 — how big is the jump?"
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+[OP] I'm done with Data 8 and it felt easy. Is Data 100 going to wreck me?
+
+[Top comment, 143 upvotes] Yes, the jump is real. Data 8 is designed for people with zero programming background — it uses a custom `datascience` library that hides the hard parts. Data 100 throws you into pandas, numpy, scikit-learn, SQL, and real linear algebra. If you have not taken a real programming class (61A) and linear algebra before Data 100, you will struggle.
+
+[Reply, 90 upvotes] The prerequisites tell the story: Data 8 has none. Data 100 wants CS61A or the equivalent, plus Math 54 or Data 8 + a stats course. The workload roughly triples. Projects in Data 100 take 10+ hours each.
+
+[Reply, 52 upvotes] Take CS61A between Data 8 and Data 100. That single class is what makes pandas click. People who skip from Data 8 straight to Data 100 without 61A are the ones who drop.
+
+[Reply, 28 upvotes] The exams in Data 100 are also conceptually deeper — they ask you to reason about bias/variance and modeling choices, not just compute. It's a great class but respect the prereqs.

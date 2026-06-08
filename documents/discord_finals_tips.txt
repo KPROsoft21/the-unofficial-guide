@@ -1,0 +1,14 @@
+SOURCE: Discord server-style messages (sample) — "Berkeley CS Survival" #finals-advice channel
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+[senior_ta] Reposting my annual finals advice for the freshmen:
+
+1. For CS61A and 61B, the single best prep is redoing past exams under timed conditions. Both classes post past finals. Do not just read solutions — actually sit down for 3 hours and take them cold. The exams reward speed and pattern recognition.
+
+2. For CS70, the proof homework IS the exam prep. If you understood every homework proof, the exam is doable. Make a one-page cheat sheet of proof techniques (induction, contradiction, counting) — handwritten sheets are allowed for CS70 finals.
+
+3. Sleep over cramming. Every year someone pulls an all-nighter and bombs because they can't think. The CS exams test reasoning, not recall.
+
+[student_2024] Adding: the libraries get packed during finals. Moffitt is open 24/7 during RRR week and finals. Main Stacks is quieter. The Engineering Library (Kresge) has the best desks but closes earlier.
+
+[senior_ta] Yes — and the curve will save you more than you think. Median grades in 61B and 70 are usually a B+. A score that feels like failure is often fine after the curve. Don't spiral over one bad exam.

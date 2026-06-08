@@ -1,0 +1,12 @@
+SOURCE: Reddit-style thread (sample) — r/berkeley "Enrollment / CalCentral tips for getting into full classes"
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+[OP] My enrollment appointment is late and the classes I want are full. What actually works to get in?
+
+[Top comment, 119 upvotes] Waitlists move more than people think, especially in the first two weeks. Most departments process waitlists automatically as people drop after the first lecture. Show up to the first few lectures even if you're waitlisted — many professors prioritize students who attend.
+
+[Reply, 85 upvotes] Phase 2 enrollment is when seats open up because people clean up their schedules. Have a backup plan ready and enroll the second your Phase 2 appointment opens. Adjustment period (the first two weeks of the semester) is the real wild west — refresh CalCentral constantly.
+
+[Reply, 47 upvotes] For impacted CS/EECS classes, being a declared major in the department gives you priority enrollment. If you're undeclared, you're at the back of the line for those specific classes. Plan around that.
+
+[Reply, 22 upvotes] Email the instructor and the advising office, politely, explaining you need the class to graduate on time. Sometimes they raise the cap or give you a permission code. It doesn't always work but it costs nothing.

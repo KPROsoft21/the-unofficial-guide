@@ -1,0 +1,14 @@
+SOURCE: Rate My Professors-style reviews (sample) — CS 70 (Discrete Math and Probability Theory), UC Berkeley
+COLLECTED: 2026-06 (sample data for The Unofficial Guide)
+
+--- Review 1 ---
+Quality: 4.5 / Difficulty: 4.0 / Would take again: Yes
+CS70 is a proof-heavy class and the difficulty comes from the homework, not the exams. The homework is long but the staff gives extremely detailed written feedback on your proofs — easily the most useful feedback I have gotten in any CS class at Cal. If you want to learn to write rigorous proofs, the graders actually tell you where your logic breaks.
+
+--- Review 2 ---
+Quality: 3.0 / Difficulty: 5.0 / Would take again: No
+Exams are conceptually tricky. The probability half of the course is harder than the discrete math half. Go to every discussion. The professor's feedback on Ed (the forum) is fast and helpful, but the lecture pace is brutal.
+
+--- Review 3 ---
+Quality: 4.0 / Difficulty: 4.5 / Would take again: Yes
+Take CS70 after CS61B, not at the same time. The combined workload will destroy you. The homework feedback is the best part — graders leave paragraph-long comments explaining proof mistakes. That detailed feedback is why I would recommend this class over a lot of others.
