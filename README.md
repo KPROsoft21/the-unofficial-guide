@@ -10,7 +10,7 @@ dining, housing).
 
 ```
 You ──▶ retrieve top-4 chunks (MiniLM + ChromaDB) ──▶ Groq LLM answers from
-        those chunks only ──▶ answer + source citations
+        those chunks only ──▶ answer + source citations 
 ```
 
 ---
